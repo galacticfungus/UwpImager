@@ -1,0 +1,33 @@
+﻿<UserControl
+    x:Class="RefOrganiser.Controls.ImageGridView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RefOrganiser.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:RefOrganiser.Models"
+    xmlns:controls="using:RefOrganiser.Controls"
+    mc:Ignorable="d"
+    DataContext="{x:Bind }"
+    Loaded="{x:Bind ControlLoaded}">
+    <Border Background="{x:Bind Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <GridView x:Name="ImageGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" ItemsSource="{x:Bind Images, Mode=OneWay}" Margin="12,0,0,0">
+            <GridView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition/>
+                    <ContentThemeTransition/>
+                </TransitionCollection>
+            </GridView.ItemContainerTransitions>
+            <GridView.Transitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </GridView.Transitions>
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="models:RefImage">
+                    <controls:ReferenceImage Reference="{x:Bind Mode=TwoWay}"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Border>
+</UserControl>

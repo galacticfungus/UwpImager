@@ -1,0 +1,57 @@
+﻿<UserControl
+    x:Class="RefOrganiser.Controls.ReferenceImage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RefOrganiser.Controls"
+    xmlns:assets="using:RefOrganiser"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IsTabStop="True"
+    UseSystemFocusVisuals="True"
+    Loaded="{x:Bind ReferenceLoaded}">
+    <Grid HorizontalAlignment="Stretch">
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="HoveringStates">
+                <VisualState x:Name="HoverButtonsShown">
+                    <VisualState.Setters>
+                        <Setter Target="ShowPiPButton.Visibility" Value="Visible" />
+                        <Setter Target="GoMonoButton.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="HoverButtonsHidden" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <!--<win2D:CanvasControl Grid.Column="0" Grid.Row="0" Margin="5" ClearColor="Black" Draw="{x:Bind OnThumbnailDraw}" MinHeight="30" />-->
+        <Image Source="../Assets/placeanim.gif" x:Name="ThumbnailImage" Width="128" Height="128" Tapped="ImageTapped">
+            <ToolTipService.ToolTip>
+                <Grid Width="Auto" Height="Auto" MaxWidth="512" MaxHeight="512">
+                    <!--x:DeferLoadStrategy="Lazy"-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Loaded="{x:Bind Reference.LoadPreviewAsync, Mode=OneWay}"/>
+                    <TextBlock Text="{x:Bind Reference.ImagePath, Mode=OneWay}" Grid.Row="1" Grid.Column="0" Style="{StaticResource BodyTextBlockStyle}"/>
+                </Grid>
+            </ToolTipService.ToolTip>
+        </Image>
+        <StackPanel Orientation="Vertical" x:Name="ButtonPanel" Visibility="Visible" Grid.Column="1" Width="40" Background="Transparent" Margin="1,0,0,0">
+            <Button Grid.Row="1" Grid.Column="0" Opacity=".5" Visibility="Collapsed" x:Name="ShowPiPButton" Tapped="DisplayAsPiP">
+                <SymbolIcon Symbol="Pictures"/>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="1" Opacity=".5" Tapped="{x:Bind Reference.ToggleImageColorAsync}" Margin="0,1,0,0" Visibility="Collapsed" x:Name="GoMonoButton">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,51 @@
+﻿<UserControl
+    x:Class="RefOrganiser.Controls.ImageSourceSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:RefOrganiser.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:storage="using:Windows.Storage"
+    xmlns:models="using:RefOrganiser.Models"
+    mc:Ignorable="d"
+    DataContext="{x:Bind Mode=OneWay}"
+    Loaded="OnLoaded">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ImageFolderTemplate" x:DataType="models:ImageSourceFolder">
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <controls:ExpandButton Width="16" Height="16" Tapped="ExpandButtonTapped" Visibility="{x:Bind HasSubFolders, Mode=OneWay}"/>
+                <TextBlock Text="{x:Bind DisplayName}" Style="{StaticResource ImageSourcesTextStyle}" Grid.Row="0"
+                           Grid.Column="1" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Bind ImageCount}" Style="{StaticResource ImageCountTextStyle}" VerticalAlignment="Center"
+                           Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" HorizontalAlignment="Center"/>
+                <Ellipse Grid.Row="0" Grid.Column="2" Fill="{StaticResource ImageCountHighlightColorBrush}" Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                
+            </Grid>
+        </DataTemplate>
+        <!--<controls:ImageSourceTemplateSelector x:Key="ImageSourceTemplateSelector" />-->
+    </UserControl.Resources>
+
+    <ListView ItemsSource="{x:Bind ImageSources, Mode=OneWay}" SelectionChanged="{x:Bind SelectedImageSourceChanged}" IsMultiSelectCheckBoxEnabled="False" x:Name="ImageSourcesListView" SelectionMode="Multiple" Background="Transparent"
+              ItemTemplate="{StaticResource ImageFolderTemplate}">
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            </Style>
+        </ListView.ItemContainerStyle>
+        <ListView.Header>
+            <Grid Margin="12,0,0,0">
+                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}">Image Sources</TextBlock>
+            </Grid>
+        </ListView.Header>
+    </ListView>
+</UserControl>

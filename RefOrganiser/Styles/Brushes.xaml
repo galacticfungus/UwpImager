@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Styles/Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <!--<LinearGradientBrush x:Key="TopSectionColorBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#00FFFFFF" Offset="0"/>
+        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+    </LinearGradientBrush>-->
+    <SolidColorBrush x:Key="TopSectionColorBrush" Color="{StaticResource TopSectionColour}" />
+    <SolidColorBrush x:Key="ImageCountHighlightColorBrush" Color="{StaticResource ImageCountHighlightColor}" Opacity=".7"></SolidColorBrush>
+    <SolidColorBrush x:Key="ThemeBackgroundColorBrush" Color="{StaticResource BackgroundColour}"></SolidColorBrush>
+</ResourceDictionary>

@@ -1,0 +1,21 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:RefOrganiser.Controls">
+
+    <Style TargetType="controls:ExpandButton" xmlns:controls="using:RefOrganiser.Controls">
+        <Setter Property="State" Value="NotExpanded"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ExpandButton">
+                    <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}">
+                        <Viewbox x:Name="PART_Viewbox">
+                            <Path x:Name="PART_Icon" Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}" Data="M6.82,39,32.29,25.86a2.09,2.09,0,0,0,0-3.54L6.82,9.2a2,2,0,0,1-1-1.77V6.06A1.81,1.81,0,0,1,8.42,4.29L41,22.32a2,2,0,0,1,0,3.54l-32.59,18a1.8,1.8,0,0,1-2.59-1.77V40.74A2,2,0,0,1,6.82,39Z"/>
+                        </Viewbox>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
